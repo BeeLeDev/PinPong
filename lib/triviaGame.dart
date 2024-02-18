@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinpong/leaderBoardPage.dart';
 
 class TriviaGamePage extends StatelessWidget {
   const TriviaGamePage({super.key});
@@ -7,12 +8,17 @@ class TriviaGamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const Text(
+              '9/ 20 questions',
+              style: TextStyle(fontSize: 14),
+              textAlign: TextAlign.start,
+            ),
+            const SizedBox(height: 10),
             const Text(
               'TRIVIA',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -21,7 +27,7 @@ class TriviaGamePage extends StatelessWidget {
             const SizedBox(height: 10),
             const Text(
               '30s left',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 14),
               textAlign: TextAlign.start,
             ),
             const SizedBox(height: 200),
@@ -37,7 +43,11 @@ class TriviaGamePage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      // Logic
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LeaderBoardPage()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
