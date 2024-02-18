@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pinpong/controller/FireStore.dart';
+import 'package:pinpong/controller/TriviaGameController.dart';
 import 'package:pinpong/model/Game.dart';
 import 'package:pinpong/model/User.dart';
 
@@ -20,6 +22,16 @@ class TestPage extends StatelessWidget {
 
   void _readRooms() async {
     print(await readGameRooms());
+  }
+
+  void _joinRoom() async {
+    final user = User("Gibeom Choi", "02028223");
+    String userid = await login(user);
+
+
+    var result = await readGameRooms();
+    GameRoom gameroomRef = await result[0];
+    await joinTriviaGame(gameroomRef.game.id, userid);
   }
 
   // This widget is the root of your application.
@@ -45,7 +57,10 @@ class TestPage extends StatelessWidget {
                   child: Text("CreateRoom")),
               ElevatedButton(
                   onPressed: () => _readRooms(),
-                  child: Text("Check Rooms"))
+                  child: Text("Check Rooms")),
+              ElevatedButton(
+                  onPressed: () => _joinRoom(),
+                  child: Text("Join Room"))
             ],
           ),
         )

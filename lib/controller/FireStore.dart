@@ -64,7 +64,7 @@ Trivia createMockTriviaGame() {
     ),
   ];
 
-  return Trivia(minParticipants: minParticipants, maxParticipants: maxParticipants, questions: triviaQuestions);
+  return Trivia(minParticipants: minParticipants, maxParticipants: maxParticipants, questions: triviaQuestions, leaderboard: []);
 }
 
 Future<List<GameRoom>> readGameRooms() async {
@@ -82,7 +82,6 @@ Future<List<GameRoom>> readGameRooms() async {
         .where((gameRoom) {
         DateTime startTime = gameRoom.startTime.toDate();
         DateTime endTime = gameRoom.endTime.toDate();
-        print("$startTime $endTime ${DateTime.now()}");
 
         if (startTime.isBefore(DateTime.now()) &&
             endTime.isAfter(DateTime.now())) {
@@ -96,6 +95,3 @@ Future<List<GameRoom>> readGameRooms() async {
     return filteredGameRooms;
 }
 
-void joinGame() {}
-
-void readGame() {}
