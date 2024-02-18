@@ -5,10 +5,13 @@ class User {
   String studentId;
   String? uid;
 
-  User(this.name, this.studentId);
+  User({required this.name, required this.studentId});
 
-  String getUid() {
-    return uid == null ? "Unknown" : uid!;
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
+      name: map['name'] ?? '',
+      studentId: map['studentId'] ?? '',
+    );
   }
 
   Map<String, dynamic> toMap() {

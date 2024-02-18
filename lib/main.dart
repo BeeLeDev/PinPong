@@ -16,7 +16,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   // runApp(const TestPage());
-  runApp(const MyApp());
+  runApp(const TestPage());
 }
 
 class MyApp extends StatelessWidget {
@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
           }
         },
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
