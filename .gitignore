@@ -105,6 +105,7 @@ unlinked_spec.ds
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 
+
 # macOS
 **/Flutter/ephemeral/
 **/Pods/

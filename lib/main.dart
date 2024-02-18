@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pinpong/gameLobbyPage.dart';
 import 'package:pinpong/homepage.dart';
+
+import 'package:pinpong/controller/TestPage.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -12,7 +14,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(const TestPage());
 }
 
 class MyApp extends StatelessWidget {
