@@ -34,6 +34,7 @@ Future<String> createMockTriviaGameRoom() async {
   var game = await db.collection('games').add(triviaGame.toFirestore());
   // Creating a mock GameRoom and attaching the trivia game's document reference
   GameRoom mockGameRoom = GameRoom(
+    name: "bam",
     startTime: startTime,
     endTime: endTime,
     game: game, // Creating a new document reference

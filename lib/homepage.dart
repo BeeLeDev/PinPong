@@ -1,5 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pinpong/gameLobbyPage.dart';
+import 'dart:math';
+import 'package:geolocator/geolocator.dart';
+import 'package:pinpong/model/Location.dart';
+
+final db = FirebaseFirestore.instance;
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -39,13 +45,25 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 150,
               child: InkWell(
-                onTap: () {
+                onTap: () async {
+                  var query = await db.collection('gamerooms').get();
+                  var docs = query.docs[0].data();
+                  var geoPoints = docs['geoPoint'];
+                  var longitude = geoPoints['longitude'];
+                  var latitude = geoPoints['latitude'];
+                
                   // Add the navigation code here
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const GameLobbyPage()),
-                  );
+                  if (await inRadius(latitude, longitude)) {
+                    print("Passed");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const GameLobbyPage()),
+                    );
+                  } else {
+                    print("failed");
+                    // Nothing
+                  }
                 },
                 child: Card(
                   shape: RoundedRectangleBorder(

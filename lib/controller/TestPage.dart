@@ -4,8 +4,14 @@ import 'package:pinpong/controller/FireStore.dart';
 import 'package:pinpong/controller/TriviaGameController.dart';
 import 'package:pinpong/model/Game.dart';
 import 'package:pinpong/model/User.dart';
+import 'dart:math';
+
+import 'package:geolocator/geolocator.dart';
+import 'package:pinpong/model/Location.dart';
 
 import '../model/GameRoom.dart';
+
+final db = FirebaseFirestore.instance;
 
 class TestPage extends StatelessWidget {
   const TestPage({super.key});
@@ -34,6 +40,18 @@ class TestPage extends StatelessWidget {
     await joinTriviaGame(gameroomRef.game.id, userid);
   }
 
+  void _checkLocation() async {
+    var query = await db.collection('gamerooms').get();
+    var docs = query.docs[0].data();
+    var geoPoints = docs['geoPoint'];
+    var longitude = geoPoints['longitude'];
+    var latitude = geoPoints['latitude'];
+
+    if (await inRadius(latitude, longitude)) {
+      print("Passed");
+    }
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -52,6 +70,9 @@ class TestPage extends StatelessWidget {
               ElevatedButton(
                   onPressed: () => _login(),
                   child: Text("Login")),
+              ElevatedButton(
+                  onPressed: () =>  _checkLocation() , 
+                  child: Text("Location")),
               ElevatedButton(
                   onPressed: () => _createRoom(),
                   child: Text("CreateRoom")),
