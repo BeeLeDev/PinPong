@@ -95,3 +95,7 @@ Future<List<GameRoom>> readGameRooms() async {
 
     return filteredGameRooms;
 }
+
+void joinGame() {}
+
+void readGame() {}

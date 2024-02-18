@@ -3,12 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 /* Firebase */
 import 'package:firebase_core/firebase_core.dart';
-<<<<<<< Updated upstream
 import 'package:pinpong/gameLobbyPage.dart';
 import 'package:pinpong/homepage.dart';
-=======
+
 import 'package:pinpong/controller/TestPage.dart';
->>>>>>> Stashed changes
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -16,12 +14,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-<<<<<<< Updated upstream
-  runApp(const MyApp());
-=======
-
   runApp(const TestPage());
->>>>>>> Stashed changes
 }
 
 class MyApp extends StatelessWidget {
