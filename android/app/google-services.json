@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "128085830553",
+    "firebase_url": "https://pinpong-6992c-default-rtdb.firebaseio.com",
+    "project_id": "pinpong-6992c",
+    "storage_bucket": "pinpong-6992c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128085830553:android:d1fbabfa72cb29aed84108",
+        "android_client_info": {
+          "package_name": "com.example.pinpong"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa695exstTg7h8pQlApptohBtQx7Y4DXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
