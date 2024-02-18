@@ -9,9 +9,14 @@ import 'package:pinpong/homepage.dart';
 import 'package:pinpong/controller/TestPage.dart';
 import 'firebase_options.dart';
 
+
+import 'package:pinpong/controller/FireStore.dart';
+import 'package:pinpong/model/User.dart';
+
+import 'dart:developer' as dev;
+
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key, required this.title});
-
   final String title;
 
   @override
@@ -21,6 +26,18 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _studentIdController = TextEditingController();
+  dynamic name;
+  dynamic studentID;
+  dynamic _errorText;
+
+  String getName() {
+    return name;
+  }
+
+  String getStudentID() {
+    return studentID;
+  }
+
 
   @override
   void dispose() {
@@ -60,6 +77,8 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               child: Column(
                 children: [
+
+                  // Name Input
                   TextField(
                     controller: _nameController,
                     decoration: const InputDecoration(
@@ -72,35 +91,62 @@ class _AuthPageState extends State<AuthPage> {
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 12, vertical: 15),
                     ),
+                    onChanged: (value) {
+                      // if the name with the studentID is already in the database, it will not update the name in the database
+                      name = value;
+                    },
                   ),
+
                   const SizedBox(height: 8),
+
+                  // ID Input
                   TextField(
                     controller: _studentIdController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                       hintText: 'Student ID',
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                      errorText: _errorText, // Use the _errorText variable for errorText
                     ),
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
+                    maxLength: 8, // Set maximum length to 8 characters
+                    onChanged: (value) {
+                      studentID = value;
+                      if (value.length != 8) {
+                        // If the length is not 8, set the errorText
+                        setState(() {
+                          _errorText = 'Student ID must be exactly 8 digits';
+                        });
+                      } else {
+                        // If the length is 8, clear the errorText
+                        setState(() {
+                          _errorText = null;
+                        });
+                        // You can also perform other actions here if needed
+                      }
+                    },
                   ),
+
                   const SizedBox(height: 20),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MyHomePage(
-                                    title: 'Nearest Game',
-                                  )),
-                        );
+                        if (getName() != null && getStudentID().length == 8) {
+                          login(User(getName(), getStudentID()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyHomePage(
+                                      title: 'Nearest Game',
+                                    )),
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
