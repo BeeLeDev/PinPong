@@ -18,11 +18,11 @@ class GameLobbyPage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage('assets/unihall.png'),
+                    backgroundImage: AssetImage('assets/cc.jpg'),
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'University Hall',
+                    'Campus Center',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),

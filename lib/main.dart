@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 /* Firebase */
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pinpong/gameLobbyPage.dart';
+import 'package:pinpong/homepage.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -36,21 +37,21 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const MyHomePage(title: 'PinPong'),
+          home: const AuthPage(title: 'PinPong'),
         ));
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class AuthPage extends StatefulWidget {
+  const AuthPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<AuthPage> createState() => _AuthPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _AuthPageState extends State<AuthPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _studentIdController = TextEditingController();
 
@@ -129,7 +130,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const GameLobbyPage()),
+                              builder: (context) => const MyHomePage(
+                                    title: 'Nearest Game',
+                                  )),
                         );
                       },
                       style: ElevatedButton.styleFrom(
