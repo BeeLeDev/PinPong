@@ -24,13 +24,13 @@ class TriviaGamePage extends StatelessWidget {
               style: TextStyle(fontSize: 16),
               textAlign: TextAlign.start,
             ),
-            const SizedBox(height: 150),
+            const SizedBox(height: 200),
             const Text(
               'Who is the president at UMB?',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               textAlign: TextAlign.start,
             ),
-            const SizedBox(height: 280),
+            const SizedBox(height: 200),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               child: Column(
