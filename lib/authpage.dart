@@ -138,7 +138,7 @@ class _AuthPageState extends State<AuthPage> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (getName() != null && getStudentID().length == 8) {
-                          login(User(getName(), getStudentID()));
+                          login(User(name: getName(), studentId: getStudentID()));
                           Navigator.push(
                             context,
                             MaterialPageRoute(
