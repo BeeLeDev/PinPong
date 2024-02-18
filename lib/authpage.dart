@@ -9,7 +9,6 @@ import 'package:pinpong/homepage.dart';
 import 'package:pinpong/controller/TestPage.dart';
 import 'firebase_options.dart';
 
-
 import 'package:pinpong/controller/FireStore.dart';
 import 'package:pinpong/model/User.dart';
 
@@ -26,8 +25,8 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _studentIdController = TextEditingController();
-  dynamic name;
-  dynamic studentID;
+  dynamic name = "John Doe";
+  dynamic studentID = "12345678";
   dynamic _errorText;
 
   String getName() {
@@ -37,7 +36,6 @@ class _AuthPageState extends State<AuthPage> {
   String getStudentID() {
     return studentID;
   }
-
 
   @override
   void dispose() {
@@ -77,7 +75,6 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               child: Column(
                 children: [
-
                   // Name Input
                   TextField(
                     controller: _nameController,
@@ -107,8 +104,10 @@ class _AuthPageState extends State<AuthPage> {
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                       hintText: 'Student ID',
-                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
-                      errorText: _errorText, // Use the _errorText variable for errorText
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                      errorText:
+                          _errorText, // Use the _errorText variable for errorText
                     ),
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
@@ -138,7 +137,8 @@ class _AuthPageState extends State<AuthPage> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (getName() != null && getStudentID().length == 8) {
-                          login(User(name: getName(), studentId: getStudentID()));
+                          login(
+                              User(name: getName(), studentId: getStudentID()));
                           Navigator.push(
                             context,
                             MaterialPageRoute(

@@ -16,7 +16,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   // runApp(const TestPage());
-  runApp(const TestPage());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -46,5 +46,3 @@ class MyApp extends StatelessWidget {
         ));
   }
 }
-
-
