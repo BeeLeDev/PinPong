@@ -45,7 +45,6 @@ Future<String> createMockTriviaGameRoom(String userId) async {
     location: location,
     geoPoint: geoPoint,
     participants: participants,
-    name: '',
   );
   var gameroom = await db.collection('gamerooms').add(mockGameRoom.toFirestore());
   return gameroom.id;
