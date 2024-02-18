@@ -9,11 +9,13 @@ abstract class Game {
 
 class Trivia extends Game {
   List<Question> triviaQuestions = [];
+  List<Map<String, int>> leaderboard = [];
 
   Trivia({
     required int minParticipants,
     required int maxParticipants,
     required List<Question> questions,
+    required List<Map<String, int>> leaderboard,
   }) : super(minParticipants, maxParticipants) {
     triviaQuestions = questions;
   }
@@ -29,11 +31,13 @@ class Trivia extends Game {
         data?['triviaQuestions'].map((q) => Question.fromMap(q)) ?? [],
       );
     }
+    var leaderboard = List<Map<String, int>>.from(data?['leaderboard'] ?? []);
 
     return Trivia(
       minParticipants: data?['minParticipants'] ?? 0,
       maxParticipants: data?['maxParticipants'] ?? 0,
       questions: questions,
+      leaderboard: leaderboard,
     );
   }
 
@@ -42,6 +46,7 @@ class Trivia extends Game {
       "minParticipants": minParticipants,
       "maxParticipants": maxParticipants,
       "triviaQuestions": triviaQuestions.map((q) => q.toMap()).toList(),
+      "leaderboard" : triviaQuestions.map((l) => l.toMap()).toList(),
     };
   }
 }

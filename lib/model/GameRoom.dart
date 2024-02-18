@@ -1,13 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pinpong/model/Game.dart';
 
 class GameRoom {
-  DocumentReference game;
+  DocumentReference<Map<String, dynamic>> game;
   String instruction;
   String location;
   GeoPoint geoPoint;
   List<String> participants;
   Timestamp startTime;
   Timestamp endTime;
+  String name;
 
   GameRoom({
     required this.game,
@@ -17,6 +19,7 @@ class GameRoom {
     required this.participants,
     required this.startTime,
     required this.endTime,
+    required this.name,
   });
 
   factory GameRoom.fromFirestore(
@@ -25,7 +28,7 @@ class GameRoom {
       ) {
     final data = snapshot.data();
     return GameRoom(
-      game: snapshot.reference,
+      game: data?['game'],
       instruction: data?['instruction'] ?? '',
       location: data?['location'] ?? '',
       geoPoint: data?['geoPoint'] != null
@@ -39,6 +42,7 @@ class GameRoom {
           : [],
       startTime: data?['startTime'],
       endTime: data?['endTime'],
+      name: data?['name'],
     );
   }
 
@@ -54,6 +58,7 @@ class GameRoom {
         "longitude": geoPoint.longitude,
       },
       "participants": participants,
+      "name" : name,
     };
   }
 }
