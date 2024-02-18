@@ -9,6 +9,12 @@ import 'package:pinpong/homepage.dart';
 import 'package:pinpong/controller/TestPage.dart';
 import 'firebase_options.dart';
 
+
+import 'package:pinpong/controller/FireStore.dart';
+import 'package:pinpong/model/User.dart';
+
+import 'dart:developer' as dev;
+
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key, required this.title});
 
@@ -21,6 +27,17 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _studentIdController = TextEditingController();
+  dynamic name;
+  dynamic studentID;
+
+  String getName() {
+    return name;
+  }
+
+  String getStudentID() {
+    return studentID;
+  }
+
 
   @override
   void dispose() {
@@ -60,6 +77,8 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               child: Column(
                 children: [
+
+                  // Name Input
                   TextField(
                     controller: _nameController,
                     decoration: const InputDecoration(
@@ -72,8 +91,14 @@ class _AuthPageState extends State<AuthPage> {
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 12, vertical: 15),
                     ),
+                    onChanged: (value) {
+                      name = value;
+                    },
                   ),
+
                   const SizedBox(height: 8),
+
+                  // ID Input
                   TextField(
                     controller: _studentIdController,
                     decoration: const InputDecoration(
@@ -88,12 +113,17 @@ class _AuthPageState extends State<AuthPage> {
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
+                    onChanged: (value) {
+                      studentID = value;
+                    },
                   ),
+
                   const SizedBox(height: 20),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
+                        login(User(getName(), getStudentID()));
                         Navigator.push(
                           context,
                           MaterialPageRoute(
