@@ -67,7 +67,7 @@ class GameLobbyPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const TriviaGamePage()),
+                              builder: (context) => TriviaGamePage()),
                         );
                       },
                       style: ElevatedButton.styleFrom(

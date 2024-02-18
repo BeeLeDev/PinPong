@@ -26,8 +26,8 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _studentIdController = TextEditingController();
-  dynamic name;
-  dynamic studentID;
+  dynamic name = "Test";
+  dynamic studentID = "12345678";
   dynamic _errorText;
 
   String getName() {
