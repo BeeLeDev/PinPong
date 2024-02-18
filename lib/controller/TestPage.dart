@@ -11,13 +11,13 @@ class TestPage extends StatelessWidget {
   const TestPage({super.key});
 
   void _login () async {
-    final user = User("Gibeom Choi", "02028223");
+    final user = User(name: "Gibeom Choi", studentId: "02028223");
     String result = await login(user);
     print(result);
   }
 
   void _createRoom () async {
-    final user = User("Gibeom Choi", "02028223");
+    final user = User(name: "Gibeom Choi", studentId: "02028223");
     String result = await login(user);
 
     print(await createMockTriviaGameRoom(result));
@@ -28,7 +28,7 @@ class TestPage extends StatelessWidget {
   }
 
   void _joinRoom() async {
-    final user = User("Gibeom Choi", "02028223");
+    final user = User(name: "Gibeom Choi", studentId: "02028223");
     String userid = await login(user);
 
 
@@ -38,7 +38,7 @@ class TestPage extends StatelessWidget {
   }
 
   void _getQuestions() async {
-    final user = User("Gibeom Choi", "02028223");
+    final user = User(name: "Gibeom Choi", studentId: "02028223");
     String userid = await login(user);
 
 
@@ -52,7 +52,7 @@ class TestPage extends StatelessWidget {
   }
 
   void _answer() async {
-    final user = User("Gibeom Choi", "02028223");
+    final user = User(name: "Gibeom Choi", studentId: "02028223");
     String userid = await login(user);
 
     var result = await readGameRooms();

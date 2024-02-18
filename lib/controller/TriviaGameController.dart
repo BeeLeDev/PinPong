@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pinpong/leaderBoardPage.dart';
 import 'package:pinpong/model/Leaderboard.dart';
+import 'package:pinpong/model/User.dart';
 
 import '../model/Game.dart';
 import '../model/GameRoom.dart';
@@ -58,6 +59,8 @@ Future<void> updateTriviaScore(String gameId, String userId, int questionNum, St
 
 void readLeaderboard(String gameId, String userId) {}
 
-void findUserById(String userId) {
+Future<User> findUserById(String userId) async {
+  var query = await db.collection('users').where('studentId', isEqualTo: userId).get();
 
+  return User.fromMap(query.docs[0].data());
 }
