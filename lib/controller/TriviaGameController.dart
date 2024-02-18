@@ -57,10 +57,25 @@ Future<void> updateTriviaScore(String gameId, String userId, int questionNum, St
   return await db.collection('leaderboard').doc(query.docs[0].id).update(leader.toMap());
 }
 
-void readLeaderboard(String gameId, String userId) {}
+Future<List<Map<User, Leaderboard>>> readLeaderboard(String gameId) async {
+  var query = await db.collection('leaderboard')
+      .where(gameId)
+      .get();
+
+  List<Map<User, Leaderboard>> answer = [];
+
+  for (var element in query.docs) {
+    Leaderboard l = Leaderboard.fromMap(element.data());
+    User user = await findUserById(l.userId); // Assuming you have a function to find a user by ID
+
+    answer.add({user: l});
+  }
+
+  return answer;
+}
 
 Future<User> findUserById(String userId) async {
-  var query = await db.collection('users').where('studentId', isEqualTo: userId).get();
+  var query = await db.collection('users').doc(userId).get();
 
-  return User.fromMap(query.docs[0].data());
+  return User.fromMap(query.data()!);
 }

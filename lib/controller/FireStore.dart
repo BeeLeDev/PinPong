@@ -46,7 +46,6 @@ Future<String> createMockTriviaGameRoom(String userId) async {
   );
 
   var gameroom = await db.collection('gamerooms').add(mockGameRoom.toFirestore());
-  var leaderboard = await db.collection('leaderboard').add(Leaderboard(gameId: game.id, userId: userId, score: 0).toMap());
   return gameroom.id;
 }
 

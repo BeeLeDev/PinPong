@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pinpong/controller/FireStore.dart';
 import 'package:pinpong/controller/TriviaGameController.dart';
 import 'package:pinpong/model/Game.dart';
+import 'package:pinpong/model/Leaderboard.dart';
 import 'package:pinpong/model/User.dart';
 
 import '../model/GameRoom.dart';
@@ -61,6 +62,19 @@ class TestPage extends StatelessWidget {
     await updateTriviaScore(gameroomRef.game.id, userid, 0, "Dorchester");
   }
 
+  void _readLeaderboard() async {
+    var result = await readGameRooms();
+    GameRoom gameroomRef = result[0];
+
+    var something = await readLeaderboard(gameroomRef.game.id);
+    for (var each in something) {
+      User user = each.keys.first;
+      Leaderboard leaderboard = each.values.first;
+
+      print(user.name);
+      print(leaderboard.score);
+    }
+  }
 
   // This widget is the root of your application.
   @override
@@ -95,6 +109,9 @@ class TestPage extends StatelessWidget {
               ElevatedButton(
                   onPressed: () => _answer(),
                   child: Text("Answer")),
+              ElevatedButton(
+                  onPressed: () => _readLeaderboard(),
+                  child: Text("Leaderboard")),
             ],
           ),
         )
