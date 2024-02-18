@@ -104,7 +104,7 @@ class _TriviaGamePage extends State<TriviaGamePage> {
               textAlign: TextAlign.start,
             ),
 
-            const SizedBox(height: 200),
+            const SizedBox(height: 150),
 
             // Question
             Text(
@@ -113,7 +113,7 @@ class _TriviaGamePage extends State<TriviaGamePage> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               textAlign: TextAlign.start,
             ),
-            const SizedBox(height: 200),
+            const SizedBox(height: 180),
 
             // Answers
             Padding(
