@@ -17,7 +17,10 @@ class TestPage extends StatelessWidget {
   }
 
   void _createRoom () async {
-    print(await createMockTriviaGameRoom());
+    final user = User("Gibeom Choi", "02028223");
+    String result = await login(user);
+
+    print(await createMockTriviaGameRoom(result));
   }
 
   void _readRooms() async {
@@ -33,6 +36,31 @@ class TestPage extends StatelessWidget {
     GameRoom gameroomRef = await result[0];
     await joinTriviaGame(gameroomRef.game.id, userid);
   }
+
+  void _getQuestions() async {
+    final user = User("Gibeom Choi", "02028223");
+    String userid = await login(user);
+
+
+    var result = await readGameRooms();
+    GameRoom gameroomRef = await result[0];
+
+    var trivia = await readTriviaGame(gameroomRef.game.id);
+
+    print(trivia.triviaQuestions[0].question);
+    print(trivia.triviaQuestions[0].answer);
+  }
+
+  void _answer() async {
+    final user = User("Gibeom Choi", "02028223");
+    String userid = await login(user);
+
+    var result = await readGameRooms();
+    GameRoom gameroomRef = await result[0];
+
+    await updateTriviaScore(gameroomRef.game.id, userid, 0, "Dorchester");
+  }
+
 
   // This widget is the root of your application.
   @override
@@ -60,7 +88,13 @@ class TestPage extends StatelessWidget {
                   child: Text("Check Rooms")),
               ElevatedButton(
                   onPressed: () => _joinRoom(),
-                  child: Text("Join Room"))
+                  child: Text("Join Room")),
+              ElevatedButton(
+                  onPressed: () => _getQuestions(),
+                  child: Text("Questions")),
+              ElevatedButton(
+                  onPressed: () => _answer(),
+                  child: Text("Answer")),
             ],
           ),
         )

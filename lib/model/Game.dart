@@ -9,13 +9,11 @@ abstract class Game {
 
 class Trivia extends Game {
   List<Question> triviaQuestions = [];
-  List<Map<String, int>> leaderboard = [];
 
   Trivia({
     required int minParticipants,
     required int maxParticipants,
     required List<Question> questions,
-    required List<Map<String, int>> leaderboard,
   }) : super(minParticipants, maxParticipants) {
     triviaQuestions = questions;
   }
@@ -31,13 +29,11 @@ class Trivia extends Game {
         data?['triviaQuestions'].map((q) => Question.fromMap(q)) ?? [],
       );
     }
-    var leaderboard = List<Map<String, int>>.from(data?['leaderboard'] ?? []);
 
     return Trivia(
       minParticipants: data?['minParticipants'] ?? 0,
       maxParticipants: data?['maxParticipants'] ?? 0,
       questions: questions,
-      leaderboard: leaderboard,
     );
   }
 
@@ -46,35 +42,34 @@ class Trivia extends Game {
       "minParticipants": minParticipants,
       "maxParticipants": maxParticipants,
       "triviaQuestions": triviaQuestions.map((q) => q.toMap()).toList(),
-      "leaderboard" : triviaQuestions.map((l) => l.toMap()).toList(),
     };
   }
 }
 
 class Question {
   String question;
-  List<String> answers;
-  String correctAnswer;
+  List<String> choices;
+  String answer;
 
   Question({
     required this.question,
-    required this.answers,
-    required this.correctAnswer,
+    required this.choices,
+    required this.answer,
   });
 
   factory Question.fromMap(Map<String, dynamic> map) {
     return Question(
       question: map['question'] ?? '',
-      answers: List<String>.from(map['answers'] ?? []),
-      correctAnswer: map['correctAnswer'] ?? '',
+      choices: List<String>.from(map['choices'] ?? []),
+      answer: map['answer'] ?? '',
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'question': question,
-      'answers': answers,
-      'correctAnswer': correctAnswer,
+      'choices': choices,
+      'answer': answer,
     };
   }
 }
