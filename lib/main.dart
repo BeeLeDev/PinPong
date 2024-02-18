@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 /* Firebase */
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pinpong/gameLobbyPage.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -63,10 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      //   title: Text(widget.title),
-      // ),
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -129,7 +126,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        // button function code
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const GameLobbyPage()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
