@@ -14,13 +14,12 @@ class LeaderBoardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(height: 50),
+            const SizedBox(height: 120),
             const Text(
               'Leaderboard',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -34,7 +33,7 @@ class LeaderBoardPage extends StatelessWidget {
                   color: Color.fromARGB(255, 116, 116, 116)),
               textAlign: TextAlign.start,
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 100),
             ListView.builder(
               physics:
                   const NeverScrollableScrollPhysics(), // to disable ListView's own scrolling inside a SingleChildScrollView
@@ -52,7 +51,7 @@ class LeaderBoardPage extends StatelessWidget {
                 );
               },
             ),
-            const SizedBox(height: 160),
+            const SizedBox(height: 80),
             const Text(
               'Superman won 100 times in a row!',
               style: TextStyle(fontSize: 16),
@@ -66,7 +65,7 @@ class LeaderBoardPage extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const SizedBox(height: 100),
+                      const SizedBox(height: 80),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.push(
