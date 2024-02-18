@@ -7,10 +7,12 @@ import 'dart:math';
 import 'package:geolocator/geolocator.dart';
 import 'package:pinpong/model/Location.dart';
 
-final db = FirebaseFirestore.instance;
 import 'package:pinpong/model/GameRoom.dart';
 import 'package:pinpong/controller/FireStore.dart';
 import 'dart:developer' as dev;
+
+final db = FirebaseFirestore.instance;
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
