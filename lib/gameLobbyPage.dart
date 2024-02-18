@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinpong/triviaGame.dart';
 
 class GameLobbyPage extends StatelessWidget {
   const GameLobbyPage({super.key});
@@ -63,7 +64,11 @@ class GameLobbyPage extends StatelessWidget {
                     const SizedBox(height: 8),
                     ElevatedButton(
                       onPressed: () {
-                        // join game functions
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TriviaGamePage()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
