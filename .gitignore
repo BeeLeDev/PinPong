@@ -113,6 +113,7 @@ ios/Runner.xcodeproj/
 **/macos/Flutter/GeneratedPluginRegistrant.swift
 **/macos/Flutter/ephemeral
 **/xcuserdata/
+macos/
 
 # Windows
 **/windows/flutter/generated_plugin_registrant.cc
