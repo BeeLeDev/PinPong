@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pinpong/model/Game.dart';
+import 'package:pinpong/model/Leaderboard.dart';
 
 import '../model/GameRoom.dart';
 import '../model/User.dart';
@@ -20,7 +21,7 @@ Future<String> login(User user) async {
   return docRef.id;
 }
 
-Future<String> createMockTriviaGameRoom() async {
+Future<String> createMockTriviaGameRoom(String userId) async {
   // Mock data for GameRoom
   // Mock data for Trivia game
   Timestamp startTime = Timestamp.now();
@@ -28,12 +29,13 @@ Future<String> createMockTriviaGameRoom() async {
   String instruction = "Follow the instructions carefully!";
   String location = "Random Location";
   GeoPoint geoPoint = GeoPoint(40.7128, -74.0060); // Example: New York City coordinates
-  List<String> participants = ["Player1", "Player2", "Player3"];
-  Trivia triviaGame = createMockTriviaGame();
+  List<String> participants = [];
+  Trivia triviaGame = await createMockTriviaGame();
 
   var game = await db.collection('games').add(triviaGame.toFirestore());
   // Creating a mock GameRoom and attaching the trivia game's document reference
   GameRoom mockGameRoom = GameRoom(
+    name: "Trivia#0",
     startTime: startTime,
     endTime: endTime,
     game: game, // Creating a new document reference
@@ -47,24 +49,13 @@ Future<String> createMockTriviaGameRoom() async {
   return gameroom.id;
 }
 
-Trivia createMockTriviaGame() {
+Future<Trivia> createMockTriviaGame() async {
   int minParticipants = 2;
   int maxParticipants = 4;
 
-  List<Question> triviaQuestions = [
-    Question(
-      question: "What is the capital of France?",
-      answers: ["Berlin", "Madrid", "Paris", "Rome"],
-      correctAnswer: "Paris",
-    ),
-    Question(
-      question: "Which planet is known as the Red Planet?",
-      answers: ["Earth", "Mars", "Jupiter", "Venus"],
-      correctAnswer: "Mars",
-    ),
-  ];
+  List<Question> triviaQuestions = await fetchTriviaQuestions();
 
-  return Trivia(minParticipants: minParticipants, maxParticipants: maxParticipants, questions: triviaQuestions, leaderboard: []);
+  return Trivia(minParticipants: minParticipants, maxParticipants: maxParticipants, questions: triviaQuestions);
 }
 
 Future<List<GameRoom>> readGameRooms() async {
@@ -95,3 +86,15 @@ Future<List<GameRoom>> readGameRooms() async {
     return filteredGameRooms;
 }
 
+Future<List<Question>> fetchTriviaQuestions() async {
+    // Reference to the 'triviaquestion' collection
+    CollectionReference<Map<String, dynamic>> triviaCollection = db.collection('triviaquestions');
+
+    // Fetch all documents from the collection
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await triviaCollection.get();
+
+    // Extract data from documents and convert them into Question objects
+    List<Question> questions = querySnapshot.docs.map((doc) => Question.fromMap(doc.data() ?? {})).toList();
+
+    return questions;
+}
