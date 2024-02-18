@@ -97,13 +97,7 @@ class _TriviaGamePage extends State<TriviaGamePage> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.start,
             ),
-            const SizedBox(height: 10),
-            const Text(
-              '30s left',
-              style: TextStyle(fontSize: 14),
-              textAlign: TextAlign.start,
-            ),
-
+            
             const SizedBox(height: 150),
 
             // Question
