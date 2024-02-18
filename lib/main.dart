@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(height: 160),
+            const SizedBox(height: 165),
             Text(
               '📍PinPong',
               style: GoogleFonts.vt323(
@@ -147,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Center(
               child: Image.asset(
                 'assets/UMB-Logo.png',
