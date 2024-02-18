@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pinpong/controller/TestPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 /* Firebase */
 import 'package:firebase_core/firebase_core.dart';
-import 'package:pinpong/gameLobbyPage.dart';
 import 'package:pinpong/homepage.dart';
-
-import 'package:pinpong/controller/TestPage.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
