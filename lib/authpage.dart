@@ -26,8 +26,8 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _studentIdController = TextEditingController();
-  dynamic name;
-  dynamic studentID;
+  dynamic name = "Test";
+  dynamic studentID = "12345678";
   dynamic _errorText;
 
   String getName() {
@@ -138,7 +138,7 @@ class _AuthPageState extends State<AuthPage> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (getName() != null && getStudentID().length == 8) {
-                          login(User(getName(), getStudentID()));
+                          login(User(name: getName(), studentId: getStudentID()));
                           Navigator.push(
                             context,
                             MaterialPageRoute(

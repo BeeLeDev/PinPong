@@ -5,5 +5,21 @@ class Leaderboard {
   String userId;
   int score;
 
-  Leaderboard(this.gameId, this.userId, this.score);
+  Leaderboard({required this.gameId, required this.userId, required this.score});
+
+  factory Leaderboard.fromMap(Map<String, dynamic> map) {
+    return Leaderboard(
+      gameId: map['gameId'] ?? '',
+      userId: map['userId'] ?? '',
+      score: map['score'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'gameId': gameId,
+      'userId': userId,
+      'score': score,
+    };
+  }
 }
