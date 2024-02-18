@@ -65,7 +65,7 @@ class _TriviaGamePage extends State<TriviaGamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      //appBar: AppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: FutureBuilder(
@@ -89,7 +89,7 @@ class _TriviaGamePage extends State<TriviaGamePage> {
               textAlign: TextAlign.start,
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 50),
             
 
             const Text(
