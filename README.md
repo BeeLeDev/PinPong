@@ -9,7 +9,6 @@ PinPong is a social gaming app that motivates people to gather and interact with
 ### Technologies Used
 - Languages
   - Dart
-  - JavaScript
 - Framework
   - Flutter
 - Databse
