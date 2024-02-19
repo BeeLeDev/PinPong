@@ -26,7 +26,7 @@ class GameLobbyPage extends StatelessWidget {
             return Text('Error: ${snapshot.error}');
           } else {
             return ListView.builder(
-              itemCount: gameRooms.length,
+              itemCount: 1,
               itemBuilder: (context, index) {
                 final gameRoom = gameRooms[index];
                 var participants = gameRoom.participants.length.toString();

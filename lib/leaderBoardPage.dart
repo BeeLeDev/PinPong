@@ -10,7 +10,7 @@ class LeaderBoardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    leaderboardEntries.add("Brandon : $correctAnswer");
+    leaderboardEntries.add("YOU : $correctAnswer");
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -64,7 +64,7 @@ class LeaderBoardPage extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const SizedBox(height: 80),
+                      const SizedBox(height: 200),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.push(

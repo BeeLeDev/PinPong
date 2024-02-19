@@ -43,10 +43,10 @@ class _TriviaGamePage extends State<TriviaGamePage> {
 
       correctAnswer++;
     } else {
-      dev.log("WRONG");
+      dev.log("WRONG! The answer was " + currentQuestion!.answer);
     }
 
-    if (currentIdx == 9) {
+    if (currentIdx == 3) {
       nextPage();
     } else {
       currentIdx++;
