@@ -26,4 +26,4 @@ PinPong is a social gaming app that motivates people to gather and interact with
 ### Screenshots
 ### Demo Video
 ### Acknowledgements
-Given that this was every team members first hackathon, that was an interesting process where we managed to pull through in the end.
+Thank you for hosting the second UMass Boston's Hackathon!
