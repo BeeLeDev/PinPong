@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:pinpong/homepage.dart';
 
 class LeaderBoardPage extends StatelessWidget {
-  LeaderBoardPage({super.key});
+  int correctAnswer = 0;
+  LeaderBoardPage(this.correctAnswer, {super.key});
 
-  final List<String> leaderboardEntries = [
-    '1. Superman',
-    '2. Ironman',
-    '3. Wonderwoman',
-    '4. Batman',
+  List<String> leaderboardEntries = [
   ];
 
   @override
   Widget build(BuildContext context) {
+    leaderboardEntries.add("Brandon : $correctAnswer");
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

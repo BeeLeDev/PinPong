@@ -94,7 +94,7 @@ class GameLobbyPage extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          const TriviaGamePage(),
+                                          TriviaGamePage(),
                                     ),
                                   );
                                 },
