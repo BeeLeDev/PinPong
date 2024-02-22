@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinpong/controller/FireStore.dart';
+import 'package:pinpong/controller/TriviaGameController.dart';
 import 'package:pinpong/leaderBoardPage.dart';
 import 'package:pinpong/model/Game.dart';
 import 'dart:developer' as dev;
@@ -15,6 +16,8 @@ class _TriviaGamePage extends State<TriviaGamePage> {
   List<String> triviaChoices = [];
   Question? currentQuestion;
   int totalQuestions = 0;
+  int currentIdx = 0;
+  int correctAnswer = 0;
 
   Future<void> loadQuestions() async {
     
@@ -33,13 +36,21 @@ class _TriviaGamePage extends State<TriviaGamePage> {
     }
   }
 
-  void handleChoice(String choice) {
+  void handleChoice(String choice) async {
     if (correctChoice(choice)) {
-      nextPage();
+      //nextPage();
       dev.log("CORRECT");
+
+      correctAnswer++;
     } else {
+      dev.log("WRONG! The answer was " + currentQuestion!.answer);
+    }
+
+    if (currentIdx == 3) {
+      nextPage();
+    } else {
+      currentIdx++;
       nextQuestion();
-      dev.log("WRONG");
     }
   }
 
@@ -51,7 +62,7 @@ class _TriviaGamePage extends State<TriviaGamePage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => LeaderBoardPage()),
+          builder: (context) => LeaderBoardPage(correctAnswer)),
     );
   }
 

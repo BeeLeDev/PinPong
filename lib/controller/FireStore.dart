@@ -30,7 +30,8 @@ Future<String> createMockTriviaGameRoom(String userId) async {
       Timestamp.fromDate(startTime.toDate().add(Duration(minutes: 30)));
   String instruction = "Follow the instructions carefully!";
   String location = "Random Location";
-  GeoPoint geoPoint = GeoPoint(40.7128, -74.0060); // Example: New York City coordinates
+  GeoPoint geoPoint =
+      GeoPoint(40.7128, -74.0060); // Example: New York City coordinates
   List<String> participants = [];
   Trivia triviaGame = await createMockTriviaGame();
 
@@ -46,7 +47,8 @@ Future<String> createMockTriviaGameRoom(String userId) async {
     geoPoint: geoPoint,
     participants: participants,
   );
-  var gameroom = await db.collection('gamerooms').add(mockGameRoom.toFirestore());
+  var gameroom =
+      await db.collection('gamerooms').add(mockGameRoom.toFirestore());
   return gameroom.id;
 }
 
@@ -56,7 +58,10 @@ Future<Trivia> createMockTriviaGame() async {
 
   List<Question> triviaQuestions = await fetchTriviaQuestions();
 
-  return Trivia(minParticipants: minParticipants, maxParticipants: maxParticipants, questions: triviaQuestions);
+  return Trivia(
+      minParticipants: minParticipants,
+      maxParticipants: maxParticipants,
+      questions: triviaQuestions);
 }
 
 Future<List<GameRoom>> readGameRooms() async {
@@ -85,14 +90,18 @@ Future<List<GameRoom>> readGameRooms() async {
 }
 
 Future<List<Question>> fetchTriviaQuestions() async {
-    // Reference to the 'triviaquestion' collection
-    CollectionReference<Map<String, dynamic>> triviaCollection = db.collection('triviaquestions');
+  // Reference to the 'triviaquestion' collection
+  CollectionReference<Map<String, dynamic>> triviaCollection =
+      db.collection('triviaquestions');
 
-    // Fetch all documents from the collection
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await triviaCollection.get();
+  // Fetch all documents from the collection
+  QuerySnapshot<Map<String, dynamic>> querySnapshot =
+      await triviaCollection.get();
 
-    // Extract data from documents and convert them into Question objects
-    List<Question> questions = querySnapshot.docs.map((doc) => Question.fromMap(doc.data() ?? {})).toList();
+  // Extract data from documents and convert them into Question objects
+  List<Question> questions = querySnapshot.docs
+      .map((doc) => Question.fromMap(doc.data() ?? {}))
+      .toList();
 
-    return questions;
+  return questions;
 }
