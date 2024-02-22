@@ -74,24 +74,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: InkWell(
                     onTap: () async {
                       var query = await db.collection('gamerooms').get();
-                  var docs = query.docs[0].data();
-                  var geoPoints = docs['geoPoint'];
-                  var longitude = geoPoints['longitude'];
-                  var latitude = geoPoints['latitude'];
+                      var docs = query.docs[0].data();
+                      var geoPoints = docs['geoPoint'];
+                      var longitude = geoPoints['longitude'];
+                      var latitude = geoPoints['latitude'];
                 
-                  // Add the navigation code here
+                      // Add the navigation code here
                       if (await inRadius(latitude, longitude)) {
-                    print("Passed");
-                    Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const GameLobbyPage()),
-                        );
-                      } else {
-                    print("failed");
-                    // Nothing
-                  }
-                },
+                        print("Passed");
+                        Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const GameLobbyPage()),
+                            );
+                          } else {
+                        print("failed");
+                        // Nothing
+                    }
+                  },
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(

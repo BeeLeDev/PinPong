@@ -53,12 +53,12 @@ Future<Position> _determinePosition() async {
 }
 
 // Global Radius
-const EarthRadius = 6378100;
-const Radius = 1000;
+const EarthRadius = 6371000; // 6378100;
+const Radius = 900;
 
 Map calculate(double latitude, double longtitude) {
-  double latRadians = longtitude * pi / 180;
-  double lonRadians = latitude * pi / 180;
+  double latRadians = latitude * pi / 180;
+  double lonRadians = longtitude * pi / 180;
   double angularDistance = Radius / EarthRadius;
 
   double minLat = latRadians - angularDistance;
